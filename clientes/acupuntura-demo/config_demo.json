@@ -1,0 +1,28 @@
+{
+  "clinic_name": "Centro de Acupuntura Madrid",
+  "address": "Calle Gran Vía 123, Madrid",
+
+  "hours": {
+    "weekdays": "L-V: 9:00 - 19:00",
+    "saturday": "Sáb: 10:00 - 14:00"
+  },
+
+  "prices": [
+    "Primera consulta: 40€",
+    "Sesión de acupuntura: 35€",
+    "Tratamiento relajante: 50€"
+  ],
+
+  "therapists": {
+    "ana": {
+      "name": "Ana López",
+      "calendar": "f41c3da0e2934b900a76e716a16c356e335605a92bcfafa2b48ee63f9a489b6c@group.calendar.google.com",
+      "hours": ["09:00", "10:00", "11:00", "12:00", "16:00"]
+    },
+    "carlos": {
+      "name": "Carlos Ruiz",
+      "calendar": "262b64ef8d02c62597acf9986d9c0ed83c408911d964d8a3ab72974bfd83fb2d@group.calendar.google.com",
+      "hours": ["15:00", "16:00", "17:00"]
+    }
+  }
+}

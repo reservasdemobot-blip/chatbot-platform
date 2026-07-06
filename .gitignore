@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+credentials.json
+
+config.local.json
+
+.env
+
+*.log
