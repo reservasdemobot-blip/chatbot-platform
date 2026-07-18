@@ -747,6 +747,13 @@ while True:
                 if chat_id in user_data:
 
                     d = safe_get_user(chat_id)
+                    
+                    # =========================
+                    # Si todavía no ha elegido una hora, no aceptar mensajes
+                    # =========================
+                    if "hour" not in d:
+                        send(chat_id, cfg()["messages"]["choose_hour_first"])
+                        continue
 
                     # =========================
                     # NOMBRE
@@ -796,7 +803,14 @@ while True:
                         
                         available = get_available_hours(d["day"], d["therapist"])
                         
-                        if d["hour"] not in available:
+                        hour = d.get("hour")
+
+                        if not hour:
+                            send(chat_id, cfg()["messages"]["session_incomplete"])
+                            user_data.pop(chat_id, None)
+                            continue
+
+                        if hour not in available:
                             send(chat_id, cfg()["messages"]["reservation_fail"])
                             user_data.pop(chat_id, None)
                             continue
@@ -809,7 +823,7 @@ while True:
                             create_event(
                                 d["service"],
                                 d["day"],
-                                d["hour"],
+                                hour,
                                 d["therapist"],
                                 chat_id,
                                 d.get("name"),
@@ -833,7 +847,7 @@ while True:
                             therapist=get_therapists()[d["therapist"]]["name"],
                             service=d["service"],
                             date=format_date(d["day"]),
-                            hour=d["hour"],
+                            hour=hour,
                             name=d["name"],
                             phone=d["phone"]
                         )
