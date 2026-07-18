@@ -6,6 +6,7 @@ import pytz
 import threading
 import os
 import sys
+import traceback
 
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
@@ -476,14 +477,12 @@ while True:
                         continue
 
                     if data == "admin_therapists":
-                        cfg = get_config()
                         text = cfg()["messages"]["admin_professionals"]
 
-                        for t_id, t in cfg["therapists"].items():
+                        for t_id, t in cfg()["therapists"].items():
                             text += f"- {t['name']}\n"
 
                         send(chat_id, text)
-                        continue
                 
                 if data == "reserve":
 
@@ -847,7 +846,9 @@ while True:
     except KeyboardInterrupt:
         raise
     
-    except Exception as e:
-        print(f"[ERROR] {datetime.now()} -> {e}")
+    except Exception:
+        print("=" * 80)
+        traceback.print_exc()
+        print("=" * 80)
 
     time.sleep(0.1)
